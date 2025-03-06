@@ -237,6 +237,22 @@ impl ArrowSerialize for Vec<u8> {
     }
 }
 
+#[cfg(feature = "bytes")]
+impl ArrowSerialize for bytes::Bytes {
+    type ArrayBuilderType = BinaryBuilder;
+
+    #[inline]
+    fn new_array() -> Self::ArrayBuilderType {
+        Self::ArrayBuilderType::default()
+    }
+
+    #[inline]
+    fn arrow_serialize(v: &Self, array: &mut Self::ArrayBuilderType) -> arrow::error::Result<()> {
+        array.append_option(Some(v));
+        Ok(())
+    }
+}
+
 impl ArrowSerialize for LargeBinary {
     type ArrayBuilderType = LargeBinaryBuilder;
 

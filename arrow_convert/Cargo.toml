@@ -14,6 +14,7 @@ default = ["derive"]
 derive = ["arrow_convert_derive"]
 tinystr = ["dep:tinystr"]
 rust_decimal = ["dep:rust_decimal"]
+bytes = ["dep:bytes"]
 glam = ["dep:glam"]
 
 [dependencies]
@@ -26,6 +27,7 @@ err-derive = { workspace = true }
 # optional deps
 tinystr = { workspace = true, optional = true }
 rust_decimal = { workspace = true, optional = true }
+bytes = { version = "^1", optional = true }
 glam = { workspace = true, optional = true }
 
 [dev-dependencies]

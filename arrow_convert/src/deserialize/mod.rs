@@ -233,6 +233,16 @@ impl ArrowDeserialize for Vec<u8> {
     }
 }
 
+#[cfg(feature = "bytes")]
+impl ArrowDeserialize for bytes::Bytes {
+    type ArrayType = BinaryArray;
+
+    #[inline]
+    fn arrow_deserialize(v: Option<&[u8]>) -> Option<Self> {
+        v.map(|t| t.to_vec().into())
+    }
+}
+
 impl ArrowDeserialize for LargeBinary {
     type ArrayType = LargeBinaryArray;
 

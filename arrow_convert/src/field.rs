@@ -214,6 +214,16 @@ impl ArrowField for Vec<u8> {
     }
 }
 
+#[cfg(feature = "bytes")]
+impl ArrowField for bytes::Bytes {
+    type Type = Self;
+
+    #[inline]
+    fn data_type() -> DataType {
+        DataType::Binary
+    }
+}
+
 /// Represents the `LargeString` Arrow type.
 pub struct LargeBinary {}
 
